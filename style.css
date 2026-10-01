@@ -1,0 +1,135 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    color: #fff;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.scoreboard {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+    gap: 40px;
+}
+
+.score-section {
+    flex: 1;
+}
+
+.score-section h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #00d4ff;
+}
+
+.score {
+    font-size: 3em;
+    font-weight: bold;
+    color: #ffd700;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+}
+
+canvas {
+    display: block;
+    background: #000;
+    border: 3px solid #ffd700;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+    cursor: none;
+}
+
+.controls {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.controls p {
+    font-size: 0.95em;
+    margin: 8px 0;
+    color: #ddd;
+}
+
+.controls strong {
+    color: #00d4ff;
+}
+
+#resetBtn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    border: 2px solid #ffd700;
+    padding: 10px 25px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+#resetBtn:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    transform: scale(1.05);
+}
+
+#resetBtn:active {
+    transform: scale(0.98);
+}
+
+.info {
+    font-size: 0.9em;
+    color: #00d4ff;
+    margin-top: 15px;
+}
+
+/* Responsive design */
+@media (max-width: 900px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    canvas {
+        width: 100%;
+        height: auto;
+    }
+
+    .scoreboard {
+        gap: 20px;
+    }
+
+    .score {
+        font-size: 2.5em;
+    }
+}
