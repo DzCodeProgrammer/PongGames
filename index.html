@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Pong Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>⚡ PONG</h1>
+                <p class="tagline">Advanced Edition</p>
+            </div>
+
+            <div class="menu">
+                <button class="menu-btn active" data-screen="game">🎮 Game</button>
+                <button class="menu-btn" data-screen="stats">📊 Statistics</button>
+                <button class="menu-btn" data-screen="settings">⚙️ Settings</button>
+                <button class="menu-btn" data-screen="about">ℹ️ About</button>
+            </div>
+
+            <div class="game-info">
+                <div class="info-item">
+                    <span class="label">Difficulty:</span>
+                    <span class="value" id="difficultyDisplay">Normal</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">FPS:</span>
+                    <span class="value" id="fpsDisplay">60</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Ball Speed:</span>
+                    <span class="value" id="ballSpeedDisplay">4</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="content">
+            <section id="game-screen" class="screen active">
+                <div class="game-header">
+                    <div class="score-container">
+                        <div class="player-card">
+                            <div class="player-avatar">👤</div>
+                            <div class="player-info">
+                                <h2>Player</h2>
+                                <div class="score-display" id="playerScore">0</div>
+                                <div class="stats-mini">
+                                    <span>Wins: <span id="playerWins">0</span></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="match-info">
+                            <div class="match-status" id="matchStatus">Ready!</div>
+                            <div class="round-info">
+                                <span>Round: <span id="roundCounter">1</span>/5</span>
+                            </div>
+                        </div>
+
+                        <div class="player-card computer">
+                            <div class="player-avatar">🤖</div>
+                            <div class="player-info">
+                                <h2>Computer</h2>
+                                <div class="score-display" id="computerScore">0</div>
+                                <div class="stats-mini">
+                                    <span>Wins: <span id="computerWins">0</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="canvas-container">
+                    <canvas id="pongCanvas" width="1000" height="600"></canvas>
+                    <div class="game-overlay" id="gameOverlay">
+                        <div class="overlay-content">
+                            <h2 id="overlayTitle">Game Over!</h2>
+                            <p id="overlayMessage">Player wins!</p>
+                            <button class="btn btn-primary" id="nextRoundBtn">Next Round</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-controls">
+                    <div class="controls-info">
+                        <div class="control-item">
+                            <span class="control-icon">🖱️</span>
+                            <span>Move Mouse</span>
+                        </div>
+                        <div class="control-item">
+                            <span class="control-icon">⬆️⬇️</span>
+                            <span>Arrow Keys</span>
+                        </div>
+                        <div class="control-item">
+                            <span class="control-icon">SPACE</span>
+                            <span>Pause/Resume</span>
+                        </div>
+                    </div>
+                    <div class="controls-buttons">
+                        <button class="btn btn-secondary" id="pauseBtn">⏸️ Pause</button>
+                        <button class="btn btn-secondary" id="resetBtn">🔄 Reset</button>
+                        <button class="btn btn-secondary" id="newGameBtn">🆕 New Game</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="stats-screen" class="screen">
+                <h2>📊 Game Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-label">Total Games Played</div>
+                        <div class="stat-value" id="totalGames">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Player Wins</div>
+                        <div class="stat-value wins" id="totalPlayerWins">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Computer Wins</div>
+                        <div class="stat-value losses" id="totalComputerWins">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Win Rate</div>
+                        <div class="stat-value" id="winRate">0%</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Total Rallies</div>
+                        <div class="stat-value" id="totalRallies">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Best Rally</div>
+                        <div class="stat-value" id="bestRally">0</div>
+                    </div>
+                </div>
+                <button class="btn btn-secondary" id="clearStatsBtn">Clear Statistics</button>
+            </section>
+
+            <section id="settings-screen" class="screen">
+                <h2>⚙️ Settings</h2>
+                <div class="settings-grid">
+                    <div class="setting-item">
+                        <label>Difficulty Level</label>
+                        <div class="difficulty-options">
+                            <button class="difficulty-btn" data-difficulty="easy">Easy</button>
+                            <button class="difficulty-btn active" data-difficulty="normal">Normal</button>
+                            <button class="difficulty-btn" data-difficulty="hard">Hard</button>
+                            <button class="difficulty-btn" data-difficulty="impossible">Impossible</button>
+                        </div>
+                    </div>
+
+                    <div class="setting-item">
+                        <label>Sound Effects</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="soundToggle" checked>
+                            <label for="soundToggle" class="toggle-label"></label>
+                        </div>
+                    </div>
+
+                    <div class="setting-item">
+                        <label>Paddle Sensitivity</label>
+                        <input type="range" id="sensitivitySlider" min="1" max="10" value="5">
+                        <span id="sensitivityValue">5</span>
+                    </div>
+
+                    <div class="setting-item">
+                        <label>Ball Speed Multiplier</label>
+                        <input type="range" id="speedMultiplier" min="0.5" max="2" step="0.1" value="1">
+                        <span id="speedMultiplierValue">1.0x</span>
+                    </div>
+
+                    <div class="setting-item">
+                        <label>Enable Particle Effects</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="particlesToggle" checked>
+                            <label for="particlesToggle" class="toggle-label"></label>
+                        </div>
+                    </div>
+
+                    <div class="setting-item">
+                        <label>Paddle Trail Effect</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="trailToggle" checked>
+                            <label for="trailToggle" class="toggle-label"></label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about-screen" class="screen">
+                <h2>ℹ️ About</h2>
+                <div class="about-content">
+                    <div class="about-box">
+                        <h3>Advanced Pong Game</h3>
+                        <p>A modern implementation of the classic Pong arcade game with advanced features, AI opponent, and beautiful UI.</p>
+                    </div>
+
+                    <div class="about-box">
+                        <h3>Features</h3>
+                        <ul>
+                            <li>🎮 4 Difficulty Levels with Adaptive AI</li>
+                            <li>🎵 Sound Effects & Audio Feedback</li>
+                            <li>✨ Particle Effects & Trail Animation</li>
+                            <li>📊 Advanced Statistics Tracking</li>
+                            <li>⚙️ Fully Customizable Settings</li>
+                            <li>🏆 Best-of-5 Tournament Mode</li>
+                            <li>🎨 Modern UI with Dark Theme</li>
+                            <li>📱 Responsive Design</li>
+                        </ul>
+                    </div>
+
+                    <div class="about-box">
+                        <h3>How to Play</h3>
+                        <p><strong>Controls:</strong></p>
+                        <ul>
+                            <li>Move your paddle with the mouse or arrow keys</li>
+                            <li>Press SPACE to pause/resume the game</li>
+                            <li>First to 5 points wins a round</li>
+                            <li>Win the best-of-5 to win the match!</li>
+                        </ul>
+                    </div>
+
+                    <div class="about-box">
+                        <h3>Developer Info</h3>
+                        <p>Created by DzCodeProgrammer</p>
+                        <p>Repository: <a href="https://github.com/DzCodeProgrammer/PongGames" target="_blank">PongGames</a></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <audio id="paddleSound" preload="auto"></audio>
+    <audio id="wallSound" preload="auto"></audio>
+    <audio id="scoreSound" preload="auto"></audio>
+    <audio id="winSound" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
