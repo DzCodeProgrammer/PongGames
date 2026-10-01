@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Pong Game</title>
+    <title>Neon Pong - Advanced Edition</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -55,7 +55,7 @@
                         <div class="match-info">
                             <div class="match-status" id="matchStatus">Ready!</div>
                             <div class="round-info">
-                                <span>Round: <span id="roundCounter">1</span>/5</span>
+                                <span>Round: <span id="roundCounter">1</span>/7</span>
                             </div>
                         </div>
 
@@ -80,6 +80,14 @@
                             <p id="overlayMessage">Player wins!</p>
                             <button class="btn btn-primary" id="nextRoundBtn">Next Round</button>
                         </div>
+                    </div>
+                    <div class="touch-controls">
+                        <button id="touchUp" class="touch-btn">▲</button>
+                        <button id="touchDown" class="touch-btn">▼</button>
+                    </div>
+                    <div class="sound-toggle-wrap">
+                        <label for="soundToggleMenu">Sound</label>
+                        <input id="soundToggleMenu" type="checkbox" checked />
                     </div>
                 </div>
 
@@ -192,7 +200,7 @@
                 <h2>ℹ️ About</h2>
                 <div class="about-content">
                     <div class="about-box">
-                        <h3>Advanced Pong Game</h3>
+                        <h3>Neon Pong - Advanced Edition</h3>
                         <p>A modern implementation of the classic Pong arcade game with advanced features, AI opponent, and beautiful UI.</p>
                     </div>
 
@@ -200,24 +208,38 @@
                         <h3>Features</h3>
                         <ul>
                             <li>🎮 4 Difficulty Levels with Adaptive AI</li>
+                            <li>⚡ Power-ups: Speed Boost, Slow Motion, Paddle Stretch</li>
+                            <li>👥 Local Multiplayer Mode</li>
                             <li>🎵 Sound Effects & Audio Feedback</li>
                             <li>✨ Particle Effects & Trail Animation</li>
                             <li>📊 Advanced Statistics Tracking</li>
                             <li>⚙️ Fully Customizable Settings</li>
-                            <li>🏆 Best-of-5 Tournament Mode</li>
+                            <li>🏆 Best-of-7 Tournament Mode</li>
+                            <li>⏱️ Round Countdown & Center Banners</li>
+                            <li>📱 Touch Controls & Mobile Support</li>
+                            <li>💾 Settings Persistence with localStorage</li>
                             <li>🎨 Modern UI with Dark Theme</li>
-                            <li>📱 Responsive Design</li>
                         </ul>
                     </div>
 
                     <div class="about-box">
                         <h3>How to Play</h3>
-                        <p><strong>Controls:</strong></p>
+                        <p><strong>Single Player Controls:</strong></p>
                         <ul>
-                            <li>Move your paddle with the mouse or arrow keys</li>
-                            <li>Press SPACE to pause/resume the game</li>
+                            <li>🖱️ Move your paddle with the mouse</li>
+                            <li>⬆️⬇️ Use Arrow Keys to move</li>
+                            <li>SPACE to pause/resume the game</li>
+                        </ul>
+                        <p><strong>Multiplayer Controls (Press M to toggle):</strong></p>
+                        <ul>
+                            <li>Player 1: Mouse or Arrow Keys</li>
+                            <li>Player 2: I/K keys</li>
+                        </ul>
+                        <p><strong>Game Rules:</strong></p>
+                        <ul>
                             <li>First to 5 points wins a round</li>
-                            <li>Win the best-of-5 to win the match!</li>
+                            <li>First to 4 rounds wins the match (Best of 7)</li>
+                            <li>Collect power-ups for special advantages!</li>
                         </ul>
                     </div>
 
@@ -225,10 +247,36 @@
                         <h3>Developer Info</h3>
                         <p>Created by DzCodeProgrammer</p>
                         <p>Repository: <a href="https://github.com/DzCodeProgrammer/PongGames" target="_blank">PongGames</a></p>
+                        <p>Version: 2.0 - Complete Edition</p>
                     </div>
                 </div>
             </section>
         </main>
+    </div>
+
+    <div id="startScreen" class="overlay-screen active">
+      <div class="start-card">
+        <h2>Neon Pong</h2>
+
+        <div class="menu-group">
+          <label>Difficulty</label>
+          <div class="selection-row">
+            <button class="mode-btn difficulty-btn active" data-difficulty="normal">Normal</button>
+            <button class="mode-btn difficulty-btn" data-difficulty="easy">Easy</button>
+            <button class="mode-btn difficulty-btn" data-difficulty="hard">Hard</button>
+          </div>
+        </div>
+
+        <div class="menu-group">
+          <label>Mode</label>
+          <div class="selection-row">
+            <button class="mode-btn mode-btn-active" data-mode="single">Single Player</button>
+            <button class="mode-btn" data-mode="multi">Multiplayer</button>
+          </div>
+        </div>
+
+        <button id="startBtn" class="btn btn-primary">Start Game</button>
+      </div>
     </div>
 
     <audio id="paddleSound" preload="auto"></audio>
